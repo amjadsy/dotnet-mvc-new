@@ -9,7 +9,7 @@ on:
 env:
   PROJECT_LOCATION: dotnet-new-mvc.csproj
   ELASTIC_BEANSTALK_NAME: dotnet-mvc-app-host-test
-  ELASTIC_BEANSTALK_ENV_NAME: Dotnet-mvc-app-host-test-env
+  ELASTIC_BEANSTALK_ENV_NAME: dotnet-mvc-app-final
 
 jobs:
   build:
