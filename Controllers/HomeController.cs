@@ -33,27 +33,46 @@ public class HomeController : Controller
     public IActionResult Success()
     {
         // Return a successful response
-        return Ok("Successful, as always");
+        return Ok("Success");
     }
 
     [HttpGet("/sometimes4xx")]
     public IActionResult Sometimes4xx()
     {
-        // Return a successful response
-        return Ok("Successful, as always");
+        // Randomly return a 4xx status code or a successful response
+        if (Random.Shared.Next(0, 2) == 0)
+        {
+            return NotFound(); // Example of a 4xx status code
+        }
+        else
+        {
+            return Ok("Success");
+        }
     }
 
     [HttpGet("/sometimes5xx")]
     public IActionResult Sometimes5xx()
     {
-        // Return a successful response
-        return Ok("Successful, as always");
+        // Randomly return a 5xx status code or a successful response
+        if (Random.Shared.Next(0, 2) == 0)
+        {
+            return StatusCode(500, "Internal Server Error"); // Example of a 5xx status code
+        }
+        else
+        {
+            return Ok("Success");
+        }
     }
 
     [HttpGet("/sometimeslatent")]
     public async Task<IActionResult> SometimesLatent()
     {
-        // Return a successful response
-        return Ok("Successful, as always");
+        // Randomly introduce a delay or return a successful response immediately
+        if (Random.Shared.Next(0, 2) == 0)
+        {
+            await Task.Delay(5000); // Simulate a 5-second delay
+        }
+
+        return Ok("Success");
     }
 }
