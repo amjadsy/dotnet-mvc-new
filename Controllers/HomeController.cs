@@ -7,7 +7,7 @@ namespace dotnet_new_mvc.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private bool _simulateErrors = false;
+    private bool _simulateErrors = true;
 
     public HomeController(ILogger<HomeController> logger)
     {
