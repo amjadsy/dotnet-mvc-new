@@ -7,6 +7,7 @@ namespace dotnet_new_mvc.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private bool _simulateErrors = false;
 
     public HomeController(ILogger<HomeController> logger)
     {
@@ -40,7 +41,7 @@ public class HomeController : Controller
     public IActionResult Sometimes4xx()
     {
         // Randomly return a 4xx status code or a successful response
-        if (Random.Shared.Next(0, 2) == 0)
+        if (_simulateErrors && Random.Shared.Next(0, 2) == 0)
         {
             return NotFound(); // Example of a 4xx status code
         }
@@ -54,7 +55,7 @@ public class HomeController : Controller
     public IActionResult Sometimes5xx()
     {
         // Randomly return a 5xx status code or a successful response
-        if (Random.Shared.Next(0, 2) == 0)
+        if (_simulateErrors && Random.Shared.Next(0, 2) == 0)
         {
             return StatusCode(500, "Internal Server Error"); // Example of a 5xx status code
         }
@@ -68,7 +69,7 @@ public class HomeController : Controller
     public async Task<IActionResult> SometimesLatent()
     {
         // Randomly introduce a delay or return a successful response immediately
-        if (Random.Shared.Next(0, 2) == 0)
+        if (_simulateErrors && Random.Shared.Next(0, 2) == 0)
         {
             await Task.Delay(5000); // Simulate a 5-second delay
         }
